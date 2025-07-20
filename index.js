@@ -3,8 +3,20 @@ var gamePattern = [];
 var userClickedPattern = [];
 
 function playSound(name) {
-  var audio = new Audio("sounds/" + name + ".mp3");
-  audio.play();
+  if (buttonColors.includes(name)) {
+    var audio = new Audio("sounds/" + name + ".mp3");
+    audio.play();
+  } else {
+    console.warn("Invalid sound name:", name);
+  }
+}
+
+function animatePress(currentColour) {
+  $("#" + currentColour).addClass("pressed");
+
+  setTimeout(function () {
+    $("#" + currentColour).removeClass("pressed");
+  }, 100);
 }
 
 function newSequence() {
@@ -13,9 +25,10 @@ function newSequence() {
 
   gamePattern.push(randomChosenColor);
 
-  $("#" + randomChosenColor).fadeOut(100).fadeIn(100); 
+  $("#" + randomChosenColor).fadeOut(100).fadeIn(100);
 
-  playSound(randomChosenColor); // ✅ using function
+  playSound(randomChosenColor);
+  animatePress(randomChosenColor); // ✅ animation added for game turn
 }
 
 $(".btn").click(function () {
@@ -25,5 +38,6 @@ $(".btn").click(function () {
   userClickedPattern.push(userChosenColor);
   console.log("User Clicked Pattern:", userClickedPattern);
 
-  playSound(userChosenColor); // ✅ using function
+  playSound(userChosenColor);
+  animatePress(userChosenColor); // ✅ animation added for user click
 });
