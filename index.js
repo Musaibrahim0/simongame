@@ -28,7 +28,7 @@ function newSequence() {
   $("#" + randomChosenColor).fadeOut(100).fadeIn(100);
 
   playSound(randomChosenColor);
-  animatePress(randomChosenColor); // ✅ animation added for game turn
+  animatePress(randomChosenColor); 
 }
 
 $(".btn").click(function () {
@@ -39,5 +39,5 @@ $(".btn").click(function () {
   console.log("User Clicked Pattern:", userClickedPattern);
 
   playSound(userChosenColor);
-  animatePress(userChosenColor); // ✅ animation added for user click
+  animatePress(userChosenColor); 
 });
